@@ -14,10 +14,10 @@ Ideas for improvement:
     - The Top class would include the top template, for example.
 """
 
-from balblog.Config import Config
-from balblog.File import File
-from balblog.HTMLTemplate import HTMLTemplate
-from balblog.utils import pretty_date
+from src.underwood.Config import Config
+from src.underwood.File import File
+from src.underwood.HTMLTemplate import HTMLTemplate
+from src.underwood.utils import pretty_date
 
 
 class HTMLDocument:

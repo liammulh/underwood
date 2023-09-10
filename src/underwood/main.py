@@ -22,10 +22,10 @@ Things that still need doing:
     - Allow user to specify stylesheets and scripts in info JSON file.
 """
 
-from balblog.Config import Config
-from balblog.Feed import Feed
-from balblog.File import File
-from balblog.HTMLDocument import HTMLDocument
+from src.underwood.Config import Config
+from src.underwood.Feed import Feed
+from src.underwood.File import File
+from src.underwood.HTMLDocument import HTMLDocument
 
 
 info = File(Config.INFO.value).read_json()
