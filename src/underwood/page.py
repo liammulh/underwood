@@ -10,27 +10,16 @@ from string import Template
 from datetime import datetime as dt
 
 from src.underwood.config import Config
+from src.underwood.section import Middle
 
 
 class Page:
     """Define the base class for a page."""
-    def __init__(self, info: str) -> None:
+    def __init__(self, info: dict) -> None:
         """Initialize the page object with the info provided."""
         self.info = info
 
     _link_template = Template('<a href="$href">$text</a>')
-
-
-class Home(Page):
-    """Define a class that gets the home page's middle section."""
-
-    # fmt: off
-    _post_summary_template = Template("""<h2>$post_title_link</h2>
-<i>$pretty_date</i>
-<p>
-$description $read_more_link
-</p>\n""")
-    # fmt: on
 
     @staticmethod
     def _pretty_date(iso_8601_date: str) -> str:
@@ -44,6 +33,18 @@ $description $read_more_link
         day = date_obj.strftime("%d").lstrip("0") + ", "
         year = date_obj.strftime("%Y")
         return weekday_and_month + day + year
+
+
+class Home(Page):
+    """Define a class that gets the home page's middle section."""
+
+    # fmt: off
+    _post_summary_template = Template("""<h2>$post_title_link</h2>
+<i>$pretty_date</i>
+<p>
+$description $read_more_link
+</p>\n""")
+    # fmt: on
 
     def get(self):
         """Return the middle section of the home page (index.html).
@@ -106,8 +107,6 @@ $contents
         """
         posts = self.info["posts"] if ascending else reversed(self.info["posts"])
 
-        # TODO: Is this correct? PyCharm is telling me it thinks post
-        # is a string, but it should be a dict.
         post_links = []
         for post in posts:
             post_links.append(self._link_to_post(post))
@@ -166,3 +165,80 @@ $contents
             style="", summary="Browse by tag", contents=self._browse_by_tag()
         )
         return browse_by_date_ascending + browse_by_date_descending + browse_by_tag
+
+
+class Post(Page):
+    """Define a class that gets the middle section of a post."""
+
+    def __init__(self, info: str, post: dict):
+        self.post = post
+        super().__init__(info)
+
+    def _info(self) -> str:
+        """Return info about the post including dates and tags.
+
+        We want the user to know when the post was published and
+        if/when updated.
+
+        We also want the user to know what the post is tagged under, and
+        we want to provide links to the comprehensive list of posts for
+        the tags.
+        """
+
+        date_info = ""
+        date_info += f"<div>Published: {self._pretty_date(self.post['published'])}</div>\n"
+        if "updated" in self.post:
+            date_info += f"<div>Updated: {self._pretty_date(self.post['updated'])}</div>\n"
+
+        tag_info = ""
+        tags = self.post["tags"]
+        if len(tags) > 0:
+            tag_info += "<div>Tagged under: "
+        for idx, tag in enumerate(tags):
+            tag_info += self._link_template.substitute(
+                href=f"archive.html#{tag}", text=tag
+            )
+            at_end = idx + 1 == len(tags)
+            if at_end:
+                tag_info += "</div>\n"
+            else:
+                tag_info += ", "
+
+        post_info = date_info + tag_info + "<hr/>\n"
+        return post_info
+
+    def _prev_next_links(self, post_idx: int) -> str:
+        """Return the previous and/or next links.
+
+        We provide links to the previous and next posts if the post has
+        both. If the post only has a previous post or only has a next
+        post, we provide the link to the previous or next post.
+        """
+        posts = self.info["posts"]
+        prev_andor_next = ""
+        if len(posts) > 1:
+            at_beginning = post_idx == 0
+            in_middle = 0 < post_idx < len(posts) - 1
+            at_end = post_idx == len(posts) - 1
+            can_define_prev = post_idx - 1 >= 0
+            if can_define_prev:
+                prev_link = self._link_template.substitute(
+                    href=posts[post_idx - 1]["file"], text="Previous post"
+                )
+            can_define_next = post_idx + 1 <= len(posts) - 1
+            if can_define_next:
+                next_link = self._link_template.substitute(
+                    href=posts[post_idx + 1]["file"], text="Next post"
+                )
+            if at_beginning:
+                prev_andor_next = next_link
+            elif in_middle:
+                prev_andor_next = prev_link + " | " + next_link
+            elif at_end:
+                prev_andor_next = prev_link
+        return prev_andor_next
+
+    def get(self, post_idx: int) -> str:
+        middle = Middle(self.info, self.post)
+        return self._info() + middle.get() + self._prev_next_links(post_idx)
+
