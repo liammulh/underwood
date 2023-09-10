@@ -3,7 +3,7 @@
 import xml.etree.ElementTree as et
 from datetime import date
 
-from src.underwood.File import File
+from src.underwood.file import File
 from src.underwood.utils import uri, post_url
 
 

@@ -14,8 +14,8 @@ Ideas for improvement:
     - The Top class would include the top template, for example.
 """
 
-from src.underwood.Config import Config
-from src.underwood.File import File
+from src.underwood.config import Config
+from src.underwood.file import File
 from src.underwood.HTMLTemplate import HTMLTemplate
 from src.underwood.utils import pretty_date
 

@@ -20,8 +20,8 @@ Things that still need doing:
     underscore.
 """
 
-from src.underwood.Feed import Feed
-from src.underwood.File import File
+from src.underwood.feed import Feed
+from src.underwood.file import File
 from src.underwood.HTMLDocument import HTMLDocument
 
 
