@@ -34,7 +34,7 @@ class Page:
 
 
 class Home(Page):
-    """Define a class that gets the home page."""
+    """Define a class that gets the home section."""
 
     # fmt: off
     _post_summary_template = Template("""<h2>$post_title_link</h2>
