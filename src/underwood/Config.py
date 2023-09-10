@@ -5,4 +5,3 @@ from enum import Enum
 
 class Config(Enum):
     NUM_POSTS_ON_HOME_PAGE = 5
-    INFO = "blog.json"
