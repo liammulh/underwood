@@ -1,0 +1,138 @@
+{
+  "domain_name": "hopper.net",
+  "_comment_inception_date": "This is when you started your blog. It's needed for the Atom feed.",
+  "inception_date": "2023-09-06",
+  "author": "Grace Hopper",
+  "input_dir": "tests/data/src",
+  "output_dir": "tests/data/www",
+  "pages": [
+    {
+      "file": "index.html",
+      "title": "Home",
+      "description": "Grace Hopper's blog about software engineering"
+    },
+    {
+      "file": "archive.html",
+      "title": "Archive",
+      "description": "Archive of Grace Hopper's blog posts"
+    },
+    {
+      "file": "about.html",
+      "title": "About",
+      "description": "About Grace Hopper and her blog"
+    },
+    {
+      "file": "contact.html",
+      "title": "Contact",
+      "description": "Contact info for Grace Hopper"
+    },
+    {
+      "file": "feed.xml",
+      "title": "RSS",
+      "description": "RSS 2.0 feed for Grace Hopper's blog"
+    }
+  ],
+  "_comment_posts": "The posts array should be in ascending chronological order.",
+  "posts": [
+    {
+      "file": "foo-1.html",
+      "title": "Foo 1",
+      "post_title": "Foo 1 title",
+      "description": "Foo 1 description",
+      "tags": [
+        "tag-1"
+      ],
+      "published": "2021-01-01",
+      "updated": "2023-09-06"
+    },
+    {
+      "file": "foo-2.html",
+      "title": "Foo 2",
+      "post_title": "Foo 2 title",
+      "description": "Foo 2 description",
+      "tags": [
+        "tag-2"
+      ],
+      "published": "2022-02-02",
+      "updated": "2023-08-01"
+    },
+    {
+      "file": "foo-3.html",
+      "title": "Foo 3",
+      "post_title": "Foo 3 title",
+      "description": "Foo 3 description",
+      "tags": [
+        "tag-3"
+      ],
+      "published": "2023-03-03"
+    },
+    {
+      "file": "bar-1.html",
+      "title": "Bar 1",
+      "post_title": "Bar 1 title",
+      "description": "Bar 1 description",
+      "tags": [
+        "tag-1",
+        "tag-2",
+        "tag-3"
+      ],
+      "published": "2023-02-01"
+    },
+    {
+      "file": "bar-2.html",
+      "title": "Bar 2",
+      "post_title": "Bar 2 title",
+      "description": "Bar 2 description",
+      "tags": [
+        "tag-2",
+        "tag-3"
+      ],
+      "published": "2023-03-01"
+    },
+    {
+      "file": "bar-3.html",
+      "title": "Bar 3",
+      "post_title": "Bar 3 title",
+      "description": "Bar 3 description",
+      "tags": [
+        "tag-1",
+        "tag-2"
+      ],
+      "published": "2023-03-01"
+    },
+    {
+      "file": "baz-1.html",
+      "title": "Baz 1",
+      "post_title": "Baz 1 title",
+      "description": "Baz 1 description",
+      "tags": [
+        "tag-1",
+        "tag-2",
+        "tag-3"
+      ],
+      "published": "2023-07-10"
+    },
+    {
+      "file": "baz-2.html",
+      "title": "Baz 2",
+      "post_title": "Baz 2 title",
+      "description": "Baz 2 description",
+      "tags": [
+        "tag-2",
+        "tag-3"
+      ],
+      "published": "2023-07-12"
+    },
+    {
+      "file": "baz-3.html",
+      "title": "Baz 3",
+      "post_title": "Baz 3 title",
+      "description": "Baz 3 description",
+      "tags": [
+        "tag-1",
+        "tag-2"
+      ],
+      "published": "2023-08-30"
+    }
+  ]
+}
