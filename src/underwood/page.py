@@ -75,3 +75,94 @@ $description $read_more_link
                     read_more_link=read_more_link,
                 )
         return home
+
+
+class Archive(Page):
+    """Define a class that gets the archive page's middle section."""
+
+    # fmt: off
+    _details_template = Template("""<details style="$style">
+<summary>
+$summary
+</summary>
+$contents
+</details>\n""")
+    # fmt: on
+
+    def _link_to_post(self, post: dict) -> str:
+        """Return a link with date and title to a post."""
+        return self._link_template.substitute(
+            href=post["file"], text=f"{post['published']}: {post['title']}"
+        )
+
+    def _browse_by_date(self, ascending: bool = True) -> str:
+        """Return section that lets you browse by post date.
+
+        If the caller specifies they want the dates in descending order,
+        we iterate over the posts backwards.
+
+        This method assumes the dates in the posts array are already
+        sorted in ascending chronological order.
+        """
+        posts = self.info["posts"] if ascending else reversed(self.info["posts"])
+
+        # TODO: Is this correct? PyCharm is telling me it thinks post
+        # is a string, but it should be a dict.
+        post_links = []
+        for post in posts:
+            post_links.append(self._link_to_post(post))
+        browse_by_date = "<ul>\n"
+
+        for post_link in post_links:
+            browse_by_date += f"<li>{post_link}</li>\n"
+        browse_by_date += "</ul>"
+
+        return browse_by_date
+
+    def _browse_by_tag(self) -> str:
+        """Return section that lets you browse by tags.
+
+        Each tag has its own details. You can link directly to the tag
+        by using the href archive.html#[tag] where [tag] is the tag you
+        want to link to.
+        """
+        posts = self.info["posts"]
+
+        # Map each tag to a list of posts.
+        tag_to_posts_map = {}
+        for post in posts:
+            for tag in post["tags"]:
+                if tag in tag_to_posts_map:
+                    tag_to_posts_map[tag].append(self._link_to_post(post))
+                else:
+                    tag_to_posts_map[tag] = [self._link_to_post(post)]
+
+        # Create the browse by tag section.
+        browse_by_tag = ""
+        for tag in tag_to_posts_map:
+            contents = f"<ul id={tag}>\n"
+            for post_link in tag_to_posts_map[tag]:
+                contents += f"<li>{post_link}</li>\n"
+            contents += "</ul>"
+            # This is nested, so we indent the details with inline
+            # styling.
+            tag_details = self._details_template.substitute(
+                style="margin-left: 1em;", summary=f"{tag}", contents=contents
+            )
+            browse_by_tag += tag_details
+        return browse_by_tag
+
+    def get(self) -> str:
+        """Return the middle section of the archive page."""
+        browse_by_date_ascending = self._details_template.substitute(
+            style="", summary="Browse by ascending date", contents=self._browse_by_date()
+        )
+        browse_by_date_descending = self._details_template.substitute(
+            style="",
+            summary="Browse by descending date",
+            contents=self._browse_by_date(ascending=False),
+        )
+        browse_by_tag = self._details_template.substitute(
+            style="", summary="Browse by tag", contents=self._browse_by_tag()
+        )
+        return browse_by_date_ascending + browse_by_date_descending + browse_by_tag
