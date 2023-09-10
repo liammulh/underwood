@@ -15,6 +15,7 @@ Ideas for improvement:
 """
 
 from string import Template
+from src.underwood.file import File
 
 
 class Section:
@@ -32,6 +33,7 @@ class Section:
 
 class Top(Section):
     """Define a class that gets the top section of the HTML document."""
+
     # fmt: off
     _template = Template("""<!DOCTYPE html>
 <html lang="en">
@@ -85,3 +87,32 @@ $nav_links
             description=self.page["description"],
             nav_links=self._nav_links(),
         )
+
+
+class Middle(Section):
+    """Define a class that gets the middle of the HTML document."""
+    def get(self):
+        """Return the middle section of the HTML document.
+
+        This is the stuff we want to sandwich between the body tags.
+        """
+        path = f"{self.info['input_dir']}/{self.page['file']}"
+        file = File(path)
+        return file.read()
+
+
+class Bottom(Section):
+    """Define a class that gets the bottom of the HTML document."""
+
+    # fmt: off
+    _template = """<hr/>
+<footer>
+<a href="#">Back to the top</a>
+</footer>
+</body>
+</html>"""
+    # fmt: on
+
+    def get(self):
+        """Return the bottom section of the HTML document."""
+        return self._template
