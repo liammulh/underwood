@@ -170,7 +170,7 @@ $contents
 class Post(Page):
     """Define a class that gets the middle section of a post."""
 
-    def __init__(self, info: str, post: dict):
+    def __init__(self, info: dict, post: dict):
         self.post = post
         super().__init__(info)
 
@@ -239,6 +239,6 @@ class Post(Page):
         return prev_andor_next
 
     def get(self, post_idx: int) -> str:
+        """Return the middle section of the post."""
         middle = Middle(self.info, self.post)
         return self._info() + middle.get() + self._prev_next_links(post_idx)
-

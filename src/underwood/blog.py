@@ -22,7 +22,12 @@ Things that still need doing:
 
 from src.underwood.feed import Feed
 from src.underwood.file import File
-from src.underwood.HTMLDocument import HTMLDocument
+from src.underwood.page import Archive
+from src.underwood.page import Home
+from src.underwood.page import Post
+from src.underwood.section import Bottom
+from src.underwood.section import Middle
+from src.underwood.section import Top
 
 
 class Blog:
@@ -32,21 +37,23 @@ class Blog:
 
     def generate(self):
         """Generate the blog based on the provided info file."""
+
         pages = self.info["pages"]
         for page in pages:
             if ".html" in page["file"]:
-                doc = HTMLDocument(self.info, page)
+                top = Top(self.info, page).get()
+                bottom = Bottom(self.info, page).get()
                 output_file = File(
                     f"{self.info['output_dir']}/{page['file']}")
                 if page["file"] == "index.html":
-                    output_file.write(
-                        doc.top() + doc.home() + doc.bottom())
+                    home = Home(self.info).get()
+                    output_file.write(top + home + bottom)
                 elif page["file"] == "archive.html":
-                    output_file.write(
-                        doc.top() + doc.archive() + doc.bottom())
+                    archive = Archive(self.info).get()
+                    output_file.write(top + archive + bottom)
                 else:
-                    output_file.write(
-                        doc.top() + doc.middle() + doc.bottom())
+                    middle = Middle(self.info, page).get()
+                    output_file.write(top + middle + bottom)
             elif page["file"] == "feed.xml":
                 feed = Feed(self.info)
                 feed.write()
@@ -54,10 +61,9 @@ class Blog:
         posts = self.info["posts"]
         for idx, post in enumerate(posts):
             if ".html" in post["file"]:
-                doc = HTMLDocument(self.info, post)
                 output_file = File(
                     f"{self.info['output_dir']}/{post['file']}")
-                post_middle = doc.post_info(
-                    post) + doc.middle() + doc.prev_next_links(idx)
-                output_file.write(
-                    doc.top() + post_middle + doc.bottom())
+                top = Top(self.info, post).get()
+                middle = Post(self.info, post).get(idx)
+                bottom = Bottom(self.info, post).get()
+                output_file.write(top + middle + bottom)
