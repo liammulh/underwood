@@ -15,8 +15,6 @@ Things that still need doing:
         - Mention that you can add an updated field to each post.
     - Edit inception date in blog.json.
     - Allow user to specify stylesheets and scripts in info JSON file.
-    - If a method should be private, prepend the method name with an
-    underscore.
 """
 
 from src.underwood.feed import Feed
