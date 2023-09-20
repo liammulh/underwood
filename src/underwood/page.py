@@ -47,7 +47,7 @@ $description $read_more_link
 </p>\n""")
     # fmt: on
 
-    def contents(self):
+    def contents(self) -> str:
         """Return the middle section of the home page (index.html).
 
         The home page contains a summary of the most recent posts from
@@ -173,7 +173,7 @@ $contents
 class Post(Page):
     """Define a class that gets the middle section of a post."""
 
-    def __init__(self, info: dict, post: dict):
+    def __init__(self, info: dict, post: dict) -> None:
         self.post = post
         super().__init__(info)
 

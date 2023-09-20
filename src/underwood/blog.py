@@ -35,7 +35,7 @@ class Blog:
         """Initialize blog with provided path to info file."""
         self.info = File(path_to_info).read_json()
 
-    def generate(self):
+    def generate(self) -> None:
         """Generate the blog based on the provided info file."""
 
         pages = self.info["pages"]

@@ -77,7 +77,7 @@ $nav_links
                 nav_links += f"<a href=\"{page['file']}\">{page['title']}</a> | "
         return nav_links
 
-    def contents(self):
+    def contents(self) -> str:
         """Return the top of the HTML document.
 
         This is the head tag along with its contents, the opening body
@@ -94,7 +94,7 @@ $nav_links
 class Middle(Section):
     """Define a class that gets the middle of the HTML document."""
 
-    def contents(self):
+    def contents(self) -> str:
         """Return the middle section of the HTML document.
 
         This is the stuff we want to sandwich between the body tags.
@@ -116,6 +116,6 @@ class Bottom(Section):
 </html>"""
     # fmt: on
 
-    def contents(self):
+    def contents(self) -> str:
         """Return the bottom section of the HTML document."""
         return self._template
