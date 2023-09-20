@@ -1,0 +1,4 @@
+[MESSAGES CONTROL]
+# Some of my classes don't have many (or any) public methods, and Pylint
+# complains about this.
+disable=R0903

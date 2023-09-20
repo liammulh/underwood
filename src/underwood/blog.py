@@ -30,6 +30,12 @@ from src.underwood.section import Top
 
 
 class Blog:
+    """Define the blog class.
+
+    This is user-facing. A user will import this class and use it to
+    create their blog object.
+    """
+
     def __init__(self, path_to_info: str) -> None:
         """Initialize blog with provided path to info file."""
         self.info = File(path_to_info).read_json()

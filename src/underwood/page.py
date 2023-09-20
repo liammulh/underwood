@@ -115,7 +115,9 @@ $contents
         browse_by_date = "<ul>\n"
 
         for post_link in post_links:
+            # pylint: disable=R1713
             browse_by_date += f"<li>{post_link}</li>\n"
+            # pylint: enable=R1713
         browse_by_date += "</ul>"
 
         return browse_by_date
@@ -140,7 +142,9 @@ $contents
 
         # Create the browse by tag section.
         browse_by_tag = ""
+        # pylint: disable=C0206
         for tag in tag_to_posts_map:
+            # pylint: enable=C0206
             contents = f"<ul id={tag}>\n"
             for post_link in tag_to_posts_map[tag]:
                 contents += f"<li>{post_link}</li>\n"
