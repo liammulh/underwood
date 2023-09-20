@@ -3,15 +3,6 @@
 This class handles the logic of creating each section of the HTML
 document, e.g. the top of the document. There is another class that we
 use in this class that defines templates for the HTML document.
-
-Ideas for improvement:
-    - Rename modules to conform to PEP8.
-    - https://peps.python.org/pep-0008/#package-and-module-names
-    - Rename this module section? Rename class HTMLSection?
-    - Move the templates from HTMLTemplate into this module.
-    - Divide the sections into their own classes that inherit from the
-      base class? For example: Top, Middle, Archive, Bottom, etc.
-    - The Top class would include the top template, for example.
 """
 
 from string import Template
