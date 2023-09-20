@@ -8,6 +8,7 @@ top and bottom sections.
 
 from datetime import datetime as dt
 from string import Template
+from typing import Dict
 
 from src.underwood.config import Config
 from src.underwood.section import Middle
@@ -129,7 +130,7 @@ $contents
         posts = self.info["posts"]
 
         # Map each tag to a list of posts.
-        tag_to_posts_map = {}
+        tag_to_posts_map: Dict[str, list[str]] = {}
         for post in posts:
             for tag in post["tags"]:
                 if tag in tag_to_posts_map:

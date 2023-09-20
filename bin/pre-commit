@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# Format, lint, type check, and test code before commit.
+#
+# To use this file, copy it to the .git/hooks directory.
+
+black .
+pylint src
+pylint tests
+mypy .
+pytest
