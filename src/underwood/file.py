@@ -1,4 +1,4 @@
-"""Provides a class that has helper methods for dealing with files."""
+"""Provide a class that has helper methods for dealing with files."""
 
 import json
 

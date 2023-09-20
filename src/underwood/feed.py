@@ -1,4 +1,4 @@
-"""Provides a class that is used to make an Atom feed."""
+"""Provide a class that is used to make an Atom feed."""
 
 import xml.etree.ElementTree as ET
 from datetime import date
@@ -23,7 +23,7 @@ class Feed:
 
     @staticmethod
     def _post_url(domain_name: str, file: str) -> str:
-        """Returns a post's URL given its domain name and file.
+        """Return a post's URL given its domain name and file.
 
         Args:
              domain_name: domain name listed in the blog info
@@ -32,7 +32,7 @@ class Feed:
         return f"https://www.{domain_name}/{file}"
 
     def _uri(self, page: dict) -> str:
-        """Returns an RFC 4151 tag URI given the info and page or post.
+        """Return an RFC 4151 tag URI given the info and page or post.
 
         For more information on RFC 4151, see the link below:
         https://datatracker.ietf.org/doc/html/rfc4151

@@ -1,4 +1,4 @@
-"""Provides the configuration variables used in the blog generator."""
+"""Provide the configuration variables used in the blog generator."""
 
 from enum import Enum
 
