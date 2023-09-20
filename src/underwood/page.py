@@ -1,10 +1,4 @@
-"""Define a class that returns the middle section of pages in the blog.
-
-As of this writing, the home page (index.html) and the archive page
-are treated specially. With posts, we add some extra info and links.
-With other pages, we just grab the source and sandwich it between the
-top and bottom sections.
-"""
+"""Provide class that returns middle section of pages in blog."""
 
 from datetime import datetime as dt
 from string import Template

@@ -1,8 +1,7 @@
-"""Provide a class that returns sections of our HTML document.
+"""Provide class that returns sections of our HTML document.
 
 This class handles the logic of creating each section of the HTML
-document, e.g. the top of the document. There is another class that we
-use in this class that defines templates for the HTML document.
+document, e.g. the top of the document.
 """
 
 from string import Template

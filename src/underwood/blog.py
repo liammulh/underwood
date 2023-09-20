@@ -1,4 +1,4 @@
-"""Define our blog class that the user can call.
+"""Provide our blog class that the user can call.
 
 The generator requires a info file containing info on each page and post
 in the blog. This info file is written in JSON.
@@ -9,7 +9,8 @@ These source files are meant to be sandwiched between HTML body tags.
 Things that still need doing:
     - Create JSON schema and validate blog.json.
     - Use enum for info keys, so they can be easily renamed.
-    - Consider improvements written in each module.
+    - Change variable file to file_path everywhere we use such a
+        variable.
     - Add tests.
     - Add docs on blog.json to README.
         - Mention that you can add an updated field to each post.
