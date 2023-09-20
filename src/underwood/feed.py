@@ -22,8 +22,8 @@ class Feed:
         # methods have it.
         self.root = ET.Element("feed", xmlns="http://www.w3.org/2005/Atom")
 
-    def metadata(self) -> None:
-        """Write metadata to the root element in the XML document."""
+    def _add_metadata(self) -> None:
+        """Add metadata to the root element in the XML document."""
         ET.SubElement(self.root, "title").text = self.info["domain_name"]
         # Borrow index.html's description for the subtitle. This assumes
         # index.html is the first page in the pages array. Not ideal,
@@ -49,8 +49,8 @@ class Feed:
             href=f"https://{self.info['domain_name']}/",
         )
 
-    def entry(self, post: dict) -> None:
-        """Write a single entry to the root element of the XML document.
+    def _add_entry(self, post: dict) -> None:
+        """Add a single entry to the root element of the XML document.
 
         Args:
             post: blog post we're making an entry for
@@ -78,15 +78,15 @@ class Feed:
             ET.SubElement(entry, "category", scheme=url, term=tag)
         ET.SubElement(entry, "summary", type="html").text = post["description"]
 
-    def entries(self):
-        """Write all entries to the root of the XML document."""
+    def _add_entries(self):
+        """Add all entries to the root of the XML document."""
         for post in self.info["posts"]:
-            self.entry(post)
+            self._add_entry(post)
 
     def write(self):
         """Write the Atom feed to disk."""
-        self.metadata()
-        self.entries()
+        self._add_metadata()
+        self._add_entries()
         xml_declaration = '<?xml version="1.0" encoding="utf-8"?>\n'
         output_file = File(f"{self.info['output_dir']}/feed.xml")
         ET.indent(self.root)
