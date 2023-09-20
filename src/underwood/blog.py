@@ -41,18 +41,17 @@ class Blog:
         pages = self.info["pages"]
         for page in pages:
             if ".html" in page["file"]:
-                top = Top(self.info, page).get()
-                bottom = Bottom(self.info, page).get()
-                output_file = File(
-                    f"{self.info['output_dir']}/{page['file']}")
+                top = Top(self.info, page).contents()
+                bottom = Bottom(self.info, page).contents()
+                output_file = File(f"{self.info['output_dir']}/{page['file']}")
                 if page["file"] == "index.html":
-                    home = Home(self.info).get()
+                    home = Home(self.info).contents()
                     output_file.write(top + home + bottom)
                 elif page["file"] == "archive.html":
-                    archive = Archive(self.info).get()
+                    archive = Archive(self.info).contents()
                     output_file.write(top + archive + bottom)
                 else:
-                    middle = Middle(self.info, page).get()
+                    middle = Middle(self.info, page).contents()
                     output_file.write(top + middle + bottom)
             elif page["file"] == "feed.xml":
                 feed = Feed(self.info)
@@ -61,9 +60,8 @@ class Blog:
         posts = self.info["posts"]
         for idx, post in enumerate(posts):
             if ".html" in post["file"]:
-                output_file = File(
-                    f"{self.info['output_dir']}/{post['file']}")
-                top = Top(self.info, post).get()
-                middle = Post(self.info, post).get(idx)
-                bottom = Bottom(self.info, post).get()
+                output_file = File(f"{self.info['output_dir']}/{post['file']}")
+                top = Top(self.info, post).contents()
+                middle = Post(self.info, post).contents(idx)
+                bottom = Bottom(self.info, post).contents()
                 output_file.write(top + middle + bottom)

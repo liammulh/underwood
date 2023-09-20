@@ -15,6 +15,7 @@ from src.underwood.section import Middle
 
 class Page:
     """Define the base class for a page."""
+
     def __init__(self, info: dict) -> None:
         """Initialize the page object with the info provided."""
         self.info = info
@@ -46,7 +47,7 @@ $description $read_more_link
 </p>\n""")
     # fmt: on
 
-    def get(self):
+    def contents(self):
         """Return the middle section of the home page (index.html).
 
         The home page contains a summary of the most recent posts from
@@ -151,10 +152,12 @@ $contents
             browse_by_tag += tag_details
         return browse_by_tag
 
-    def get(self) -> str:
+    def contents(self) -> str:
         """Return the middle section of the archive page."""
         browse_by_date_ascending = self._details_template.substitute(
-            style="", summary="Browse by ascending date", contents=self._browse_by_date()
+            style="",
+            summary="Browse by ascending date",
+            contents=self._browse_by_date(),
         )
         browse_by_date_descending = self._details_template.substitute(
             style="",
@@ -186,9 +189,13 @@ class Post(Page):
         """
 
         date_info = ""
-        date_info += f"<div>Published: {self._pretty_date(self.post['published'])}</div>\n"
+        date_info += (
+            f"<div>Published: {self._pretty_date(self.post['published'])}</div>\n"
+        )
         if "updated" in self.post:
-            date_info += f"<div>Updated: {self._pretty_date(self.post['updated'])}</div>\n"
+            date_info += (
+                f"<div>Updated: {self._pretty_date(self.post['updated'])}</div>\n"
+            )
 
         tag_info = ""
         tags = self.post["tags"]
@@ -238,7 +245,7 @@ class Post(Page):
                 prev_andor_next = prev_link
         return prev_andor_next
 
-    def get(self, post_idx: int) -> str:
+    def contents(self, post_idx: int) -> str:
         """Return the middle section of the post."""
         middle = Middle(self.info, self.post)
-        return self._info() + middle.get() + self._prev_next_links(post_idx)
+        return self._info() + middle.contents() + self._prev_next_links(post_idx)

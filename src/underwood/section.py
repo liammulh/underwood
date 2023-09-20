@@ -15,11 +15,13 @@ Ideas for improvement:
 """
 
 from string import Template
+
 from src.underwood.file import File
 
 
 class Section:
     """Define a base class for sections of the HTML document."""
+
     def __init__(self, info: dict, page: dict) -> None:
         """Initialize the section object.
 
@@ -75,7 +77,7 @@ $nav_links
                 nav_links += f"<a href=\"{page['file']}\">{page['title']}</a> | "
         return nav_links
 
-    def get(self):
+    def contents(self):
         """Return the top of the HTML document.
 
         This is the head tag along with its contents, the opening body
@@ -91,7 +93,8 @@ $nav_links
 
 class Middle(Section):
     """Define a class that gets the middle of the HTML document."""
-    def get(self):
+
+    def contents(self):
         """Return the middle section of the HTML document.
 
         This is the stuff we want to sandwich between the body tags.
@@ -113,6 +116,6 @@ class Bottom(Section):
 </html>"""
     # fmt: on
 
-    def get(self):
+    def contents(self):
         """Return the bottom section of the HTML document."""
         return self._template
