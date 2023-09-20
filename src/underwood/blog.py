@@ -14,7 +14,6 @@ Things that still need doing:
     - Add tests.
     - Add docs on blog.json to README.
         - Mention that you can add an updated field to each post.
-    - Edit inception date in blog.json.
     - Allow user to specify stylesheets and scripts in info JSON file.
 """
 
