@@ -7,7 +7,6 @@ This script also requires source files, written in HTML, for your blog.
 These source files are meant to be sandwiched between HTML body tags.
 
 Things that still need doing:
-    - Use imperative mood in docstrings.
     - Create JSON schema and validate blog.json.
     - Use enum for info keys, so they can be easily renamed.
     - Consider improvements written in each module.
