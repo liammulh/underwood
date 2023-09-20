@@ -6,8 +6,8 @@ With other pages, we just grab the source and sandwich it between the
 top and bottom sections.
 """
 
-from string import Template
 from datetime import datetime as dt
+from string import Template
 
 from src.underwood.config import Config
 from src.underwood.section import Middle
