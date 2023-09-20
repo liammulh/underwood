@@ -4,7 +4,6 @@ import xml.etree.ElementTree as ET
 from datetime import date
 
 from src.underwood.file import File
-from src.underwood.utils import uri, post_url
 
 
 class Feed:
@@ -21,6 +20,31 @@ class Feed:
         # Create the root element of the XML document so that our
         # methods have it.
         self.root = ET.Element("feed", xmlns="http://www.w3.org/2005/Atom")
+
+    @staticmethod
+    def _post_url(domain_name: str, file: str) -> str:
+        """Returns a post's URL given its domain name and file.
+
+        Args:
+             domain_name: domain name listed in the blog info
+             file: file associated with the blog post
+        """
+        return f"https://www.{domain_name}/{file}"
+
+    def _uri(self, page: dict) -> str:
+        """Returns an RFC 4151 tag URI given the info and page or post.
+
+        For more information on RFC 4151, see the link below:
+        https://datatracker.ietf.org/doc/html/rfc4151
+
+        Args:
+            page: (or post) we want a URI for
+        Returns:
+            a URI of the form tag:foobar.org,yyyy-mm-dd:/path/to/file.html
+        """
+        domain = self.info["domain_name"]
+        pubdate = page["published"]
+        return f"tag:{domain},{pubdate}:/{page['file']}"
 
     def _add_metadata(self) -> None:
         """Add metadata to the root element in the XML document."""
@@ -60,14 +84,14 @@ class Feed:
         # Write author element to the entry.
         author = ET.SubElement(entry, "author")
         ET.SubElement(author, "name").text = self.info["author"]
-        site_url = post_url(self.info["domain_name"], "")
+        site_url = self._post_url(self.info["domain_name"], "")
         ET.SubElement(author, "uri").text = site_url
 
         # Write post-specific elements to the entry.
         ET.SubElement(entry, "title").text = post["description"]
-        url = post_url(self.info["domain_name"], post["file"])
+        url = self._post_url(self.info["domain_name"], post["file"])
         ET.SubElement(entry, "link").text = url
-        ET.SubElement(entry, "id").text = uri(self.info, post)
+        ET.SubElement(entry, "id").text = self._uri(post)
         if "updated" in post:
             updated = post["updated"]
         else:
@@ -78,12 +102,12 @@ class Feed:
             ET.SubElement(entry, "category", scheme=url, term=tag)
         ET.SubElement(entry, "summary", type="html").text = post["description"]
 
-    def _add_entries(self):
+    def _add_entries(self) -> None:
         """Add all entries to the root of the XML document."""
         for post in self.info["posts"]:
             self._add_entry(post)
 
-    def write(self):
+    def write(self) -> None:
         """Write the Atom feed to disk."""
         self._add_metadata()
         self._add_entries()
