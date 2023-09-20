@@ -4,8 +4,8 @@
 #
 # To use this file, copy it to the .git/hooks directory.
 
-black .
-pylint src
-pylint tests
-mypy .
-pytest
+black . &&
+    pylint src &&
+    pylint tests &&
+    mypy . &&
+    pytest
