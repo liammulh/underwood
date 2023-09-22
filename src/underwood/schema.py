@@ -56,6 +56,11 @@ schema = {
                         "description": "This is a short description of the page.",
                     },
                 },
+                "required": [
+                    Keys.FILE_NAME.value,
+                    Keys.TITLE.value,
+                    Keys.DESCRIPTION.value,
+                ],
             },
         },
         Keys.POSTS.value: {
@@ -97,7 +102,24 @@ schema = {
                         "description": "ISO 8601 date when the post was last updated.",
                     },
                 },
+                "required": [
+                    Keys.FILE_NAME.value,
+                    Keys.TITLE.value,
+                    Keys.POST_TITLE.value,
+                    Keys.DESCRIPTION.value,
+                    Keys.TAGS.value,
+                    Keys.DATE_PUBLISHED.value,
+                ],
             },
         },
     },
+    "required": [
+        Keys.DOMAIN_NAME.value,
+        Keys.DATE_STARTED.value,
+        Keys.PRIMARY_AUTHOR.value,
+        Keys.INPUT_DIR_PATH.value,
+        Keys.OUTPUT_DIR_PATH.value,
+        Keys.PAGES.value,
+        Keys.POSTS.value,
+    ],
 }

@@ -7,7 +7,6 @@ This script also requires source files, written in HTML, for your blog.
 These source files are meant to be sandwiched between HTML body tags.
 
 Things that still need doing:
-    - Describe which fields are required in schema.
     - Use keys enum throughout code.
     - Change variable file to file_path everywhere we use such a
         variable.
