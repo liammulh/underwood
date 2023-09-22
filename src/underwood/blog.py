@@ -21,12 +21,12 @@ Things that still need doing:
 
 from jsonschema import validate as validate_json
 
-from src.underwood.schema import schema
 from src.underwood.feed import Feed
 from src.underwood.file import File
 from src.underwood.page import Archive
 from src.underwood.page import Home
 from src.underwood.page import Post
+from src.underwood.schema import schema
 from src.underwood.section import Bottom
 from src.underwood.section import Middle
 from src.underwood.section import Top
