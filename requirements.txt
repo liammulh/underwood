@@ -1,4 +1,6 @@
 black
+jsonschema
+types-jsonschema
 mypy
 pylint[spelling]
 pytest

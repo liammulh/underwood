@@ -7,16 +7,20 @@ This script also requires source files, written in HTML, for your blog.
 These source files are meant to be sandwiched between HTML body tags.
 
 Things that still need doing:
-    - Create JSON schema and validate blog.json.
-    - Use enum for info keys, so they can be easily renamed.
+    - Describe which fields are required in schema.
     - Change variable file to file_path everywhere we use such a
         variable.
+        - Generally use path where appropriate, e.g. input_dir needs to
+            be input_path
     - Add tests.
     - Add docs on blog.json to README.
         - Mention that you can add an updated field to each post.
     - Allow user to specify stylesheets and scripts in info JSON file.
 """
 
+from jsonschema import validate as validate_json
+
+from src.underwood.schema import schema
 from src.underwood.feed import Feed
 from src.underwood.file import File
 from src.underwood.page import Archive
@@ -37,6 +41,10 @@ class Blog:
     def __init__(self, path_to_info: str) -> None:
         """Initialize blog with provided path to info file."""
         self.info = File(path_to_info).read_json()
+
+    def validate(self) -> None:
+        """Validate the provided info file."""
+        validate_json(self.info, schema)
 
     def generate(self) -> None:
         """Generate the blog based on the provided info file."""
