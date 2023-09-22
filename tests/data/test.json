@@ -28,8 +28,8 @@
     },
     {
       "file": "feed.xml",
-      "title": "RSS",
-      "description": "RSS 2.0 feed for Grace Hopper's blog"
+      "title": "Feed",
+      "description": "Atom feed for Grace Hopper's blog"
     }
   ],
   "_comment_posts": "The posts array should be in ascending chronological order.",
