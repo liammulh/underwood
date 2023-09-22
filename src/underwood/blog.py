@@ -29,6 +29,7 @@ from src.underwood.schema import schema
 from src.underwood.section import Bottom
 from src.underwood.section import Middle
 from src.underwood.section import Top
+from src.underwood.keys import Keys
 
 
 class Blog:
@@ -49,29 +50,29 @@ class Blog:
     def generate(self) -> None:
         """Generate the blog based on the provided info file."""
 
-        pages = self.info["pages"]
+        pages = self.info[Keys.PAGES.value]
         for page in pages:
-            if ".html" in page["file"]:
+            if ".html" in page[Keys.FILE_NAME.value]:
                 top = Top(self.info, page).contents()
                 bottom = Bottom(self.info, page).contents()
-                output_file = File(f"{self.info['output_dir']}/{page['file']}")
-                if page["file"] == "index.html":
+                output_file = File(f"{self.info[Keys.OUTPUT_DIR_PATH.value]}/{page[Keys.FILE_NAME.value]}")
+                if page[Keys.FILE_NAME.value] == "index.html":
                     home = Home(self.info).contents()
                     output_file.write(top + home + bottom)
-                elif page["file"] == "archive.html":
+                elif page[Keys.FILE_NAME.value] == "archive.html":
                     archive = Archive(self.info).contents()
                     output_file.write(top + archive + bottom)
                 else:
                     middle = Middle(self.info, page).contents()
                     output_file.write(top + middle + bottom)
-            elif page["file"] == "feed.xml":
+            elif page[Keys.FILE_NAME.value] == "feed.xml":
                 feed = Feed(self.info)
                 feed.write()
 
-        posts = self.info["posts"]
+        posts = self.info[Keys.POSTS.value]
         for idx, post in enumerate(posts):
-            if ".html" in post["file"]:
-                output_file = File(f"{self.info['output_dir']}/{post['file']}")
+            if ".html" in post[Keys.FILE_NAME.value]:
+                output_file = File(f"{self.info[Keys.OUTPUT_DIR_PATH.value]}/{post[Keys.FILE_NAME.value]}")
                 top = Top(self.info, post).contents()
                 middle = Post(self.info, post).contents(idx)
                 bottom = Bottom(self.info, post).contents()
