@@ -55,7 +55,9 @@ class Blog:
             if ".html" in page[Keys.FILE_NAME.value]:
                 top = Top(self.info, page).contents()
                 bottom = Bottom(self.info, page).contents()
-                output_file = File(f"{self.info[Keys.OUTPUT_DIR_PATH.value]}/{page[Keys.FILE_NAME.value]}")
+                output_file = File(
+                    f"{self.info[Keys.OUTPUT_DIR_PATH.value]}/{page[Keys.FILE_NAME.value]}"
+                )
                 if page[Keys.FILE_NAME.value] == "index.html":
                     home = Home(self.info).contents()
                     output_file.write(top + home + bottom)
@@ -72,7 +74,9 @@ class Blog:
         posts = self.info[Keys.POSTS.value]
         for idx, post in enumerate(posts):
             if ".html" in post[Keys.FILE_NAME.value]:
-                output_file = File(f"{self.info[Keys.OUTPUT_DIR_PATH.value]}/{post[Keys.FILE_NAME.value]}")
+                output_file = File(
+                    f"{self.info[Keys.OUTPUT_DIR_PATH.value]}/{post[Keys.FILE_NAME.value]}"
+                )
                 top = Top(self.info, post).contents()
                 middle = Post(self.info, post).contents(idx)
                 bottom = Bottom(self.info, post).contents()
