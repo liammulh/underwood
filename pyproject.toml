@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "jsonschema ~= 4.19"]
 build-backend = "hatchling.build"
 
 [project]
