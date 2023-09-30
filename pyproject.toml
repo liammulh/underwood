@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "Underwood"
+version = "0.0.1"
+authors = [
+  { name="Liam Mulhall", email="liammulh@gmail.com" },
+]
+description = "Static blog generator"
+readme = "README.md"
+requires-python = ">=3.11.4"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/liammulh/underwood"
+"Bug Tracker" = "https://github.com/liammulh/underwood/issues"
