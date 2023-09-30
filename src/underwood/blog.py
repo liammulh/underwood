@@ -1,22 +1,4 @@
-"""Provide our blog class that the user can call.
-
-The generator requires a info file containing info on each page and post
-in the blog. This info file is written in JSON.
-
-This script also requires source files, written in HTML, for your blog.
-These source files are meant to be sandwiched between HTML body tags.
-
-Things that still need doing:
-    - Use keys enum throughout code.
-    - Change variable file to file_path everywhere we use such a
-        variable.
-        - Generally use path where appropriate, e.g. input_dir needs to
-            be input_path
-    - Add tests.
-    - Add docs on blog.json to README.
-        - Mention that you can add an updated field to each post.
-    - Allow user to specify stylesheets and scripts in info JSON file.
-"""
+"""Provide our blog class that the user can call."""
 
 from jsonschema import validate as validate_json
 
