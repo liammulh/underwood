@@ -4,8 +4,13 @@
 #
 # To use this file, copy it to the .git/hooks directory.
 
+echo "Format..........................................................."
 black . || exit 1
+echo "Lint src........................................................."
 pylint src || exit 1
+echo "Lint tests......................................................."
 pylint tests || exit 1
-mypy . || exit 1
-pytest || exit 1
+echo "Check types......................................................"
+mypy --exclude 'venv' . || exit 1
+echo "Run tests........................................................"
+pytest tests || exit 1
