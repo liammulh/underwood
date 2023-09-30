@@ -3,7 +3,7 @@
 import xml.etree.ElementTree as ET
 from datetime import date
 
-from src.underwood.file import File
+from underwood.file import File
 
 
 class Feed:

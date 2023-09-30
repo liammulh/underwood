@@ -11,7 +11,7 @@ https://python-jsonschema.readthedocs.io/
 # We don't care about long lines for this file.
 # pylint: disable=C0301
 
-from src.underwood.keys import Keys
+from underwood.keys import Keys
 
 schema = {
     "type": "object",

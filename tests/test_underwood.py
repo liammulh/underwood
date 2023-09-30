@@ -1,6 +1,6 @@
 """Use underwood to generate a test blog."""
 
-from src.underwood.blog import Blog
+from underwood.blog import Blog
 
 
 def test_underwood() -> None:

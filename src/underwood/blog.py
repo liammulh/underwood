@@ -2,16 +2,16 @@
 
 from jsonschema import validate as validate_json
 
-from src.underwood.feed import Feed
-from src.underwood.file import File
-from src.underwood.page import Archive
-from src.underwood.page import Home
-from src.underwood.page import Post
-from src.underwood.schema import schema
-from src.underwood.section import Bottom
-from src.underwood.section import Middle
-from src.underwood.section import Top
-from src.underwood.keys import Keys
+from underwood.feed import Feed
+from underwood.file import File
+from underwood.page import Archive
+from underwood.page import Home
+from underwood.page import Post
+from underwood.schema import schema
+from underwood.section import Bottom
+from underwood.section import Middle
+from underwood.section import Top
+from underwood.keys import Keys
 
 
 class Blog:

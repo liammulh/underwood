@@ -4,8 +4,8 @@ from datetime import datetime as dt
 from string import Template
 from typing import Dict
 
-from src.underwood.config import Config
-from src.underwood.section import Middle
+from underwood.config import Config
+from underwood.section import Middle
 
 
 class Page:

@@ -6,7 +6,7 @@ document, e.g. the top of the document.
 
 from string import Template
 
-from src.underwood.file import File
+from underwood.file import File
 
 
 class Section:
