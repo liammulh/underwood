@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# Generate distribution archives.
+#
+# For more info, see the link below.
+# https://packaging.python.org/en/latest/tutorials/packaging-projects/#generating-distribution-archives
+python -m build

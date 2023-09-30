@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# Publish to PyPI.
+#
+# I will almost certainly forget the correct invocation, hence this
+# script. This should prompt you for authentication. For the username
+# use __token__ and for the password, use your API token. For more info,
+# see the link below.
+# https://packaging.python.org/en/latest/tutorials/packaging-projects/#uploading-the-distribution-archives
+
+python -m twine upload --repository pypi dist/*
