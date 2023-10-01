@@ -60,7 +60,7 @@ $description $read_more_link
         for idx, post in enumerate(reversed(posts)):
             if idx + 1 <= num_posts_to_show:
                 post_title_link = self._link_template.substitute(
-                    href=post["file"], text=post["title"]
+                    href=post["file"], text=post["post_title"]
                 )
                 read_more_link = self._link_template.substitute(
                     href=post["file"], text="Read more..."
