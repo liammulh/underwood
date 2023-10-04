@@ -112,7 +112,7 @@ class Bottom(Section):
     # fmt: off
     _template = """<hr/>
 <footer>
-<a href="#">Back to the top</a>
+<a href="#">top</a>
 </footer>
 </body>
 </html>"""

@@ -229,12 +229,12 @@ class Post(Page):
             can_define_prev = post_idx - 1 >= 0
             if can_define_prev:
                 prev_link = self._link_template.substitute(
-                    href=posts[post_idx - 1]["file"], text="Previous post"
+                    href=posts[post_idx - 1]["file"], text="previous"
                 )
             can_define_next = post_idx + 1 <= len(posts) - 1
             if can_define_next:
                 next_link = self._link_template.substitute(
-                    href=posts[post_idx + 1]["file"], text="Next post"
+                    href=posts[post_idx + 1]["file"], text="next"
                 )
             if at_beginning:
                 prev_andor_next = next_link
