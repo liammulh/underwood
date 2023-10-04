@@ -35,7 +35,19 @@ class Top(Section):
     <title>$domain_name | $title</title>
 </head>
 <style>
+a {
+    color: blue;
+    text-decoration: none;
+}
+body {
+    background-color: #ffffff;
+    border: 0.1em solid black;
+    border-radius: 1em;
+    padding: 0 1em 1em; /* Top, left and right, bottom. */
+}
 html {
+    background-color: #ddeeff;
+    font-family: sans-serif;
     font-size: 1.25em;
     line-height: 1.25;
     margin: auto;
