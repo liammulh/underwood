@@ -89,7 +89,7 @@ $contents
     def _link_to_post(self, post: dict) -> str:
         """Return a link with date and title to a post."""
         return self._link_template.substitute(
-            href=post["file"], text=f"{post['published']}: {post['title']}"
+            href=post["file"], text=f"{post['published']}: {post['post_title']}"
         )
 
     def _browse_by_date(self, ascending: bool = True) -> str:
